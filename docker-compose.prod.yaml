@@ -77,7 +77,9 @@ services:
       context: ./frontend
       args:
         VITE_API_URL: ${VITE_API_URL:-/api}
-        SERVICE_FQDN_FRONTEND
+        restart: unless-stopped
+    environment:
+      - SERVICE_FQDN_FRONTEND
     restart: unless-stopped
     # BIND_HOST=127.0.0.1 si cloudflared o el proxy corre en este host.
     # Para un proxy en otro host/contenedor, usá la IP privada del servidor
